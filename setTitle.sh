@@ -7,7 +7,16 @@ function st {
         else
                 title=`pwd`
         fi
-        echo -en "\033]2;${title}\007"
+
+        os=`uname -a`
+
+        if [[ $os =~ ^.*Darwin.* ]]
+        then
+                echo "Mac OSX Detected"
+                printf "\e]1;${title}\a"
+        else
+                echo -en "\033]2;${title}\007"
+        fi
 }
 
 #For our example, I want to set the title to a random movie quote 
